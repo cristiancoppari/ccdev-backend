@@ -26,7 +26,7 @@ async function bootstrap() {
             secret: 'mrpeanutbutterhouse',
         }),
     );
-    app.use(csruf('123456789iamasecret987654321look'));
+    app.use(csruf('12345678123456781234567812345678'));
     app.use(helmet());
     app.enableCors();
 

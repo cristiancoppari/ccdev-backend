@@ -11,8 +11,7 @@ export class ApiController {
 
     @Get('csrf')
     getCsrfToken(@Req() req: IRequestWithCsrfToken, @Res() res: Response) {
-        req.csrfToken();
-        return res.status(200).send('token generated');
+        return res.status(200).send({ csrfToken: req.csrfToken() });
     }
 
     @Post('send-mail')
