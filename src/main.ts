@@ -2,6 +2,9 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import helmet from 'helmet';
+import * as csruf from 'tiny-csrf';
+import * as cookieParser from 'cookie-parser';
+import * as session from 'express-session';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -17,9 +20,16 @@ async function bootstrap() {
 
     SwaggerModule.setup('api-docs', app, document);
 
+    app.use(cookieParser('bojackhorseman'));
+    app.use(
+        session({
+            secret: 'mrpeanutbutterhouse',
+        }),
+    );
+    app.use(csruf('123456789iamasecret987654321look'));
     app.use(helmet());
     app.enableCors();
 
-    await app.listen(process.env.PORT || 3000);
+    await app.listen(process.env.PORT || 3001);
 }
 bootstrap();
