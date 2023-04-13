@@ -18,6 +18,7 @@ async function bootstrap() {
     SwaggerModule.setup('api-docs', app, document);
 
     app.use(helmet());
+    app.enableCors();
 
     await app.listen(process.env.PORT || 3000);
 }
