@@ -5,8 +5,14 @@ import * as cookieParser from 'cookie-parser';
 import { doubleCsrf } from 'csrf-csrf';
 
 const { generateToken, doubleCsrfProtection } = doubleCsrf({
-    getSecret: () => 'mrpeanutbutterhouse',
+    getSecret: () => 'mrpeanutbutterhousewhosthatdog',
     cookieName: 'csrfToken',
+    cookieOptions: {
+        httpOnly: true,
+        sameSite: 'lax', // Recommend you make this strict if posible
+        path: '/',
+        secure: true,
+    },
 });
 
 async function bootstrap() {

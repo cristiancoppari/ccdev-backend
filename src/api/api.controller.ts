@@ -10,7 +10,8 @@ export class ApiController {
 
     @Get('csrf')
     getCsrfToken(@Req() req: IRequestWithCsrfToken, @Res() res: Response) {
-        return res.status(200).json({ csrfToken: req.csrfToken() });
+        req.cookies = req.csrfToken();
+        return res.status(200).send({ csrfToken: req.csrfToken() });
     }
 
     @Post('send-mail')
