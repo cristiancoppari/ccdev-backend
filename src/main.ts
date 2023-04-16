@@ -26,6 +26,11 @@ async function bootstrap() {
     app.use(cookieParser());
     app.use(doubleCsrfProtection);
 
+    app.use((req: any, res: any, next: any) => {
+        res.header('Cross-Origin-Opener-Policy', 'unsafe-none'); // Change the value as needed
+        next();
+    });
+
     await app.listen(process.env.PORT || 3001);
 }
 bootstrap();
