@@ -9,7 +9,7 @@ const { generateToken, doubleCsrfProtection } = doubleCsrf({
     cookieName: 'csrfToken',
     cookieOptions: {
         httpOnly: true,
-        sameSite: 'none', // Recommend you make this strict if posible
+        sameSite: 'strict', // Recommend you make this strict if posible
         path: '/',
         secure: true,
     },
